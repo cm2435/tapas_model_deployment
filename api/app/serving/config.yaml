@@ -4,3 +4,5 @@ qa_model:
   inference:
     batch_size: 1
     max_length: 512
+    num_workers : 4
+    worker_type : uvicorn.workers.UvicornWorker

@@ -18,12 +18,16 @@ import os
 import signal
 import subprocess
 import sys
+import yaml 
+from pathlib import Path 
 
 cpu_count = multiprocessing.cpu_count()
 
 model_server_timeout = os.environ.get("MODEL_SERVER_TIMEOUT", 60)
 model_server_workers = 4
 
+config_path = Path(__file__).parent / "serving" / "config.yaml"
+model_args = yaml.safe_load(config_path.read_text())["qa_model"]["inference"]
 
 def sigterm_handler(nginx_pid, gunicorn_pid):
     try:
@@ -57,9 +61,9 @@ def start_server():
             "-b",
             "unix:/tmp/gunicorn.sock",
             "-w",
-            str(model_server_workers),
+            model_args['num_workers'],
             "--worker-class",
-            "uvicorn.workers.UvicornWorker",
+            model_args['worker_type'],
             "wsgi:app",
         ]
     )
