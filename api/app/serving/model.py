@@ -13,10 +13,14 @@ import torch.nn as nn
 import uvicorn
 import yaml
 from scipy.spatial.distance import cosine
-from transformers import RobertaConfig, RobertaModel, RobertaTokenizer
-
-from transformers import TapasTokenizer, TapasForQuestionAnswering, TapasConfig
-from typing import Union, List, Optional
+from transformers import (
+    RobertaConfig,
+    RobertaModel,
+    RobertaTokenizer,
+    TapasConfig,
+    TapasForQuestionAnswering,
+    TapasTokenizer,
+)
 
 
 class InferenceModel(object):

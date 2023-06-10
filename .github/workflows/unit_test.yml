@@ -21,6 +21,10 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
+          #Test with cpu 
+          pip3 install torch --index-url https://download.pytorch.org/whl/cpu
+
+
       - name: Lint
         run: |
           isort . --check
@@ -31,4 +35,4 @@ jobs:
           bandit --severity-level medium -r ./
       - name: Unit Testing
         run: |
-          pytest embedding_api/tests/
+          pytest api/tests/unit/

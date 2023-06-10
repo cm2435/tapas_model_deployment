@@ -6,11 +6,4 @@ bandit
 pytest - mock
 pytest - cov
 
-tree_sitter
-pyvespa
-
-easydict
 transformers
-numpy
-pandas
-boto3

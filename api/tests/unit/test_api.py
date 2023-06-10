@@ -1,14 +1,15 @@
-from pathlib import Path
-from fastapi.testclient import TestClient
-import pytest
 import sys
+from pathlib import Path
+import pytest
+from fastapi.testclient import TestClient
 
 
 @pytest.fixture
 def client():
+    print(str(Path(__file__).parents[2] / "app"))
     sys.path.insert(
         0,
-        str(Path(__file__).parents[1] / "app"),
+        str(Path(__file__).parents[2] / "app"),
     )
     from predictor import app
 
@@ -53,3 +54,4 @@ def test_batch_questions_response(client):
     payload = {"questions": questions, "table": table}
     response = client.post("/invocations", json=payload)
     assert response.status_code == 200
+
