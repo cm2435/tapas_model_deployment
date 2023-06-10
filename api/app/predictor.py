@@ -4,7 +4,7 @@ import uvicorn
 from fastapi import APIRouter, FastAPI, HTTPException, Response
 from schemas.input_schemas import QARequestSchema
 from schemas.response_schemas import QAResponseSchema
-from serving.embeddings import InferenceModel
+from serving.model import InferenceModel
 import pandas as pd
 
 app = FastAPI()
