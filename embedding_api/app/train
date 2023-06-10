@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+
+# This implementation works in File mode and makes no assumptions about the input file names.
+# Input is specified as CSV with a data point in each row and the labels in the first column.
+
+from __future__ import print_function
+
+import json
+import os
+import pickle
+import sys
+import traceback
+
+import pandas as pd
+import regex as re
+import tqdm
+
+# from training.base import CodeSearchTrainer, BaseTrainer
+
+# These are the paths to where SageMaker mounts interesting things in container.
+prefix = "/opt/ml/"
+input_path = prefix + "input/data"
+output_path = os.path.join(prefix, "output")
+model_path = os.path.join(prefix, "model")
+param_path = os.path.join(prefix, "input/config/hyperparameters.json")
+
+channel_name = "training"
+training_path = os.path.join(input_path, channel_name)
+
+# The function to execute the training.
+def train():
+    try:
+        print("beginning training")
+        # CodeSearchTrainer().train()
+        prefix = "opt/ml"
+        with open(os.path.join(prefix, "/model/x.bin"), "wb") as f:
+            pickle.dump("foo", f)
+        print("training done")
+
+    except Exception as e:
+        # Write out an error file. This will be returned as the failureReason in the
+        # DescribeTrainingJob result.
+        trc = traceback.format_exc()
+        # with open(os.path.join(BaseTrainer("python").output_path, 'failure'), 'w') as s:
+        #    s.write('Exception during training: ' + str(e) + '\n' + trc)
+        # Printing this causes the exception to be in the training job logs, as well.
+        print("Exception during training: " + str(e) + "\n" + trc, file=sys.stderr)
+        sys.exit(0)
+        # A non-zero exit code causes the training job to be marked as Failed.
+        # sys.exit(255)
+
+
+if __name__ == "__main__":
+    train()
+
+    """print(os.listdir(BaseTrainer().model_path))
+    # A zero exit code causes the job to be marked a Succeeded. Check to see model folder isn't empty
+    if len(os.listdir(BaseTrainer().model_path)) != 0:  
+        print("model folder is not empty, model trained")
+        sys.exit(0)"""
+    sys.exit(0)
+    # else:
+    #    print("model folder is empty after training, model training failed")
+    #    sys.exit(1)

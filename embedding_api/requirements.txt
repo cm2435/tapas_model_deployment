@@ -1,0 +1,12 @@
+scikit-learn==1.1.2
+numpy==1.22.0 
+pandas
+tqdm
+pydantic
+logger
+gunicorn
+fastapi==0.68.0
+uvicorn[standard]==0.15.0
+pyarrow
+boto3
+scipy

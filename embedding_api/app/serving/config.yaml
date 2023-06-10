@@ -1,0 +1,6 @@
+qa_model:
+  base_model: google/tapas-base-finetuned-wtq
+
+  inference:
+    batch_size: 1
+    max_length: 512
