@@ -31,4 +31,4 @@ jobs:
           bandit --severity-level medium -r ./
       - name: Unit Testing
         run: |
-          pytest embedding_api/tests/
+          pytest api/tests/
