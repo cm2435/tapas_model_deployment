@@ -3,7 +3,8 @@
 # Set docker image variables
 docker_image_name="tapas_model_serving_0001"
 region="us-east-2"
-repository_name="qa_api"
+#Do not use underscore _ in the name for this as ECR will compain when using for sagemaker jobs
+repository_name="qa-api"
 
 # Read the contents of the ~/.aws/credentials file
 credentials=$(cat ~/.aws/credentials)
@@ -30,7 +31,7 @@ fi
 
 # Run pytest on the subfolder ./tests and store the result in a variable
 echo "running unit tests"
-pytest_output=$(pytest ../api/tests 2>&1)
+pytest_output=$(pytest ../api/tests/unit/ 2>&1)
 
 # Check if pytest passed with no errors
 if [[ $pytest_output == *"ERROR"* ]]; then
@@ -42,7 +43,7 @@ else
     # ECR deployment
     aws ecr get-login-password --region $region | docker login --username AWS --password-stdin 708362204001.dkr.ecr.us-east-2.amazonaws.com
 
-    docker build -t $docker_image_name --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --build-arg AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY ../app
+    docker build -t $docker_image_name --build-arg AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID --build-arg AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -f ../api/Dockerfile ../api
 
     docker tag $docker_image_name:latest 708362204001.dkr.ecr.us-east-2.amazonaws.com/$repository_name:latest
 
