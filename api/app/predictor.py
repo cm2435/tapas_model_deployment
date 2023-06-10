@@ -1,11 +1,11 @@
 from typing import Optional, Union
 
+import pandas as pd
 import uvicorn
 from fastapi import APIRouter, FastAPI, HTTPException, Response
 from schemas.input_schemas import QARequestSchema
 from schemas.response_schemas import QAResponseSchema
 from serving.model import InferenceModel
-import pandas as pd
 
 app = FastAPI()
 controller = APIRouter()

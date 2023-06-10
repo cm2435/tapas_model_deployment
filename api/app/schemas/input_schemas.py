@@ -1,5 +1,5 @@
-from typing import List, Optional, Union, Dict
-from typing import Dict, List
+from typing import Dict, List, Optional, Union
+
 from pydantic import BaseModel
 
 ##INPUT VALIDATION SCHEMAS
