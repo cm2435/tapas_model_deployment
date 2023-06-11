@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -54,4 +55,3 @@ def test_batch_questions_response(client):
     payload = {"questions": questions, "table": table}
     response = client.post("/invocations", json=payload)
     assert response.status_code == 200
-
