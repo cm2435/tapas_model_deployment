@@ -153,7 +153,7 @@ class InferenceModel(object):
             queries=question_batch,
         ).to(self.device)
         answers = []
-        with torch.no_grad():
+        with torch.inference_mode(), torch.cuda.amp.autocast():
             output = self.model(**inputs)
 
         print(
