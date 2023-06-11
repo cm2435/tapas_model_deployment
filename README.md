@@ -1,4 +1,4 @@
-# TODO REPLACE THIS WITH NOT BOILER PLATE DESCRIPTION IN THE MORNING 
+# Tapas model deployment to sagemaker with basic CI CD 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A brief description of your project.
@@ -19,7 +19,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Python (version X.X.X)
+- Python (3.7+)
 - Conda
 
 ### Installation
@@ -27,4 +27,21 @@ These instructions will get you a copy of the project up and running on your loc
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your_username/your_project.git
+git clone https://github.com/cm2435/tapas_model_deployment
+```
+
+2. Create a new conda environment with needed dependancies:
+```bash
+conda create --name project_env python=X.X
+conda activate project_env
+pip install -r requirements-dev.txt
+```
+
+### Running tests
+Tests are stored under ./api/tests .
+
+Unit tests can be run with pytest. 
+```python
+ pytest ./api/tests/unit/
+```
+Model performance tests can be run 
