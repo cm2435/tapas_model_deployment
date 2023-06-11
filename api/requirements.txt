@@ -5,7 +5,7 @@ tqdm
 pydantic
 logger
 gunicorn
-fastapi==0.68.0
+fastapi==0.96.0
 uvicorn[standard]==0.15.0
 pyarrow
 boto3
