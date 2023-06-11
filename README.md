@@ -7,11 +7,9 @@ A brief description of your project.
 
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
+  - [Permissions](#permissions)
   - [Installation](#installation)
 - [Running the Tests](#running-the-tests)
-- [API Methods](#api-methods)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Getting Started
 
