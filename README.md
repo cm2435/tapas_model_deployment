@@ -1,8 +1,7 @@
 # Tapas model deployment to sagemaker with basic CI CD 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-A brief description of your project.
-
+Heres a brief project to show the deployment of a NLP model to sagemaker inference servers using a custom bring your own container format with GPU, tests, logging and more.
 ## Table of Contents
 
 - [Getting Started](#getting-started)
@@ -35,7 +34,7 @@ git clone https://github.com/cm2435/tapas_model_deployment
 
 2. Create a new conda environment with needed dependancies:
 ```bash
-conda create --name project_env python=X.X
+conda create --name project_env python=3.9
 conda activate project_env
 pip install -r requirements-dev.txt
 ```
