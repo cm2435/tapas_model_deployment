@@ -21,7 +21,6 @@ This folder contains scripts and resources for deploying your API as a SageMaker
 
 - Docker: Make sure you have Docker installed on your local machine for building the API container.
 - AWS CLI: Ensure you have the AWS CLI configured with appropriate credentials to push the container to ECR and deploy the SageMaker endpoint.
-- SageMaker: Familiarize yourself with Amazon SageMaker concepts and workflows to effectively utilize the provided deployment resources.
 
 Note: Modify the scripts and configurations based on your specific project requirements, such as container build steps, environment variables, or additional SageMaker endpoint customization.
 

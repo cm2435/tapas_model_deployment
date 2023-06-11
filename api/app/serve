@@ -18,8 +18,9 @@ import os
 import signal
 import subprocess
 import sys
-import yaml 
-from pathlib import Path 
+from pathlib import Path
+
+import yaml
 
 cpu_count = multiprocessing.cpu_count()
 
