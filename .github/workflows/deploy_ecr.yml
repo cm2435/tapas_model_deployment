@@ -1,0 +1,19 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run deployment script
+        run: |
+          chmod +x deployment/build_and_push.sh
+          ./deployment/build_and_push.sh
