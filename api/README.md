@@ -23,6 +23,7 @@ App is run by a websocket that launches async fastapi workers on a guicorn webse
         ]
     }
     }
+    
 Multiple questions can be passed to allow for batch processing. Since the webserver is balanced with nginx the upstream timeout has been manually set to 15 mins,
 but large batchsizes should be handled and split client side before being sent over to mitigate risks of the server running out of memory. 
 
