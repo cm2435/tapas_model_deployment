@@ -1,8 +1,8 @@
 import concurrent.futures
 import requests
 
-# Specify the endpoint URL
-endpoint_url = "<endpoint_url>"
+# Specify the endpoint URL for the deployed tapas model on us-east-2 with name table-qa-001
+endpoint_url = "https://runtime.sagemaker.us-east-2.amazonaws.com/endpoints/table-qa-001/invocations"
 
 # Specify the initial number of concurrent invocations
 initial_concurrent_invocations = 1
@@ -15,7 +15,8 @@ num_total_invocations = 100
 
 # Function to send inference request to the endpoint
 def send_inference_request():
-    response = requests.post(endpoint_url, json={"your_payload_data"})
+    json_payload = {"questions": ["which actor has the last name Pitt"],"table": {"Actors": ["Brad Pitt", "Leonardo Di Caprio", "George Clooney"], "Number of movies": ["87", "53", "69"]}}
+    response = requests.post(endpoint_url, json=json_payload)
     return response.status_code
 
 # Perform load testing
