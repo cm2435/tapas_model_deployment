@@ -20,7 +20,7 @@ def client():
 @pytest.fixture
 def data_dict():
     # Specify the path to your JSONLines file
-    file_path = "testcases.jsonl"
+    file_path = Path(__file__).parent / "testcases.jsonl"
     
     # Open the file and load its contents into a list of dictionaries
     with open(file_path, "r") as json_file:

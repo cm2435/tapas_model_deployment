@@ -49,5 +49,6 @@ async def transformation(schema: QARequestSchema):
 
 app.include_router(controller)
 
+#Here for debugging only
 if __name__ == "__main__":
-    uvicorn.run(app=app, port=8001)
+    uvicorn.run(app=app, port=8002)

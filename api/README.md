@@ -1,80 +1,42 @@
 # REST API example application
-This is the documatic implimentation of our core code search API.
-
-Impliments 3 main tasks:
-1. smart_highlighting
-2. embedding
-3. keyword_generation
+This is the documatic implimentation of the API for doing Table QA with a finetuned TAPAS model. 
 
 App is run by a websocket that launches async fastapi workers on a guicorn webserver.
-
-`smart_highlighting` is the task to get a ranked list of the top lines for a given function that is returned
-and their similarity scores to a given queries. 
-
-`emebedding` is the task used to yield a List[List[float]] representing the embedding from our search models that 
-can be piped to vespa to build indexes.
-
-`keyword_generation` is the task used to yield a List[str] of keywords for a given query or block of code and their relative 
-similarities 
-
-## Install
-    conda create --name <env_name> python==3.9 
-    conda activate <env_name>
-    pip install -r requirements.txt
-    conda activate <env_name>
-
-## Run the app
-
-    python predictor.py 
-
-## Run the tests
-
-    pytest ./tests/
-
-## Build and push the container to ECR 
-    bash ./build_and_push.sh
 
 
 
 ## Example schema
     {
-    "task": "embedding",
-    "embedding_payload": {
-        "code": [
-        "def read_file(fp):\n\treturn pd.read_csv(fp)"
+    "questions":[
+        "Who is brad pitt?"
+    ],
+    "table":{
+        "Actors":[
+            "Brad Pitt",
+            "Leonardo Di Caprio",
+            "George Clooney"
         ],
-        "query": [
-        "read file"
-        ],
-        "language": "python",
-        "response_max_len": 64
-    },
-    "keyword_payload": {
-        "code": [
-        "def read_file(fp):\n\treturn pd.read_csv(fp)"
-        ],
-        "query": [
-        "read file"
-        ],
-        "return_top_N": 20
-    },
-    "highlighting_payload": {
-        "code": [
-        "def read_file(fp):\n\treturn pd.read_csv(fp)"
-        ],
-        "query": "read file",
-        "language": "python",
-        "return_top_N": 20
+        "Number of movies":[
+            "87",
+            "53",
+            "69"
+        ]
     }
     }
+    
+Multiple questions can be passed to allow for batch processing. Since the webserver is balanced with nginx the upstream timeout has been manually set to 15 mins,
+but large batchsizes should be handled and split client side before being sent over to mitigate risks of the server running out of memory. 
 
-    Only one task payload needs to be passed. For example, if task is embedding, only the embedding json field is needed.
+## Expected Response 
+    [
+    {
+        "question": "Who is brad pitt? ",
+        "answer": "Brad Pitt",
+        "predicted_aggregation": "NONE"
+    }
+    ]
 
-
-
-
-
-
+Responses are batched whilst preserving sending order to minimise overhead.
 
 
 
