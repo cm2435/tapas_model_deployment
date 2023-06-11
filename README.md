@@ -22,6 +22,11 @@ These instructions will get you a copy of the project up and running on your loc
 - Python (3.7+)
 - Conda
 
+### Permissions. 
+The local development of the API requires no special CSP provider permissions. That being said, CI CD must be run with an IAM role that has 
+write acess to ECR and full sagmaker deployment permissions
+
+
 ### Installation
 
 1. Clone the repository:
@@ -44,4 +49,11 @@ Unit tests can be run with pytest.
 ```python
  pytest ./api/tests/unit/
 ```
-Model performance tests can be run 
+Model performance tests can be run in a similar fashion: 
+```python
+ pytest ./api/tests/performance
+```
+Integration testing is done as a script and is runnable simply a a python file 
+```python
+python api/tests/integration/load_test.py 
+```
