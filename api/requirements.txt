@@ -1,6 +1,6 @@
 scikit-learn==1.1.2
 numpy==1.22.0 
-pandas==1.5.3
+pandas==2.0.3
 tqdm==4.64.1
 pydantic==1.10.4
 gunicorn
